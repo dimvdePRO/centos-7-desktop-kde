@@ -25,4 +25,16 @@ cat $CWD/yum/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
 echo ":: Configuration du dépôt CR."
 cat $CWD/yum/CentOS-CR.repo > /etc/yum.repos.d/CentOS-CR.repo
 
+if ! rpm -q yum-plugin-priorities 2>&1 > /dev/null ; then
+  yum -y install yum-plugin-priorities
+fi
+
+if ! rpm -q epel-release 2>&1 > /dev/null ; then
+  yum -y install epel-release
+fi
+
+echo ":: Configuration du dépôt EPEL."
+cat $CWD/yum/epel.repo > /etc/yum.repos.d/epel.repo
+cat $CWD/yum/epel-testing.repo > /etc/yum.repos.d/epel-testing.repo
+
 exit 0
