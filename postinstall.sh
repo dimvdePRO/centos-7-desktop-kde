@@ -48,4 +48,11 @@ if ! rpm -q adobe-release-x86_64 2>&1 > /dev/null ; then
   cat $CWD/yum/adobe-linux-x86_64.repo > /etc/yum.repos.d/adobe-linux-x86_64.repo
 fi
 
+if ! rpm -q elrepo-release 2>&1 > /dev/null ; then
+  echo ":: Configuration du dépôt ELRepo."
+  rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+  yum -y localinstall $CWD/yum/elrepo-release-*.rpm
+  cat $CWD/yum/elrepo.repo > /etc/yum.repos.d/elrepo.repo
+fi
+
 exit 0
