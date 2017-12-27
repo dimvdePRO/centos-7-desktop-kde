@@ -1,0 +1,27 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+# User specific aliases and functions
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ll='ls -al'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias vi='vim'
+
+# Command prompt for root
+WHITE='\[\033[1;37m\]'
+RED='\[\033[0;33m\]'
+NC='\[\033[0m\]'
+PS1="$RED[$WHITE\u$NC@$WHITE\h$NC:$WHITE\W$RED] #$NC "
+
+# Vim is our preferred editor
+EDITOR=vim
+VISUAL=$EDITOR
+export EDITOR VISUAL
+
