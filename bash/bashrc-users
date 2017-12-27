@@ -1,11 +1,11 @@
 # ~/.bashrc
 
-# Source global definitions
+# Prendre en compte la configuration globale
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-# User specific aliases and functions
+# Quelques alias pratiques
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -14,13 +14,13 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias vi='vim'
 
-# Command prompt for users
+# Invite de commandes pour les utilisateurs
 GREEN='\[\033[0;32m\]'
 WHITE='\[\033[1;37m\]'
 NC='\[\033[0;m\]'
 PS1="$GREEN[$WHITE\u$NC@$WHITE\h$NC:$WHITE\W$GREEN] \$ $NC"
 
-# Vim is our preferred editor
+# Vim est notre éditeur préféré
 EDITOR=vim
 VISUAL=$EDITOR
 export EDITOR VISUAL
