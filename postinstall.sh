@@ -26,20 +26,26 @@ echo ":: Configuration du dépôt CR."
 cat $CWD/yum/CentOS-CR.repo > /etc/yum.repos.d/CentOS-CR.repo
 
 if ! rpm -q yum-plugin-priorities 2>&1 > /dev/null ; then
+  echo ":: Installation du plugin Yum-Priorities."
   yum -y install yum-plugin-priorities
 fi
 
-echo ":: Configuration du dépôt EPEL."
 if ! rpm -q epel-release 2>&1 > /dev/null ; then
+  echo ":: Configuration du dépôt EPEL."
   yum -y install epel-release
   cat $CWD/yum/epel.repo > /etc/yum.repos.d/epel.repo
   cat $CWD/yum/epel-testing.repo > /etc/yum.repos.d/epel-testing.repo
 fi
 
-echo ":: Configuration du dépôt Nux-Dextop."
 if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
-  yum -y localinstall $CWD/yum/nux-dextop-release-*.rpm
+  echo ":: Configuration du dépôt Nux-Dextop."
   cat $CWD/yum/nux-dextop.repo > /etc/yum.repos.d/nux-dextop.repo
+fi
+
+if ! rpm -q adobe-release-x86_64 2>&1 > /dev/null ; then
+  echo ":: Configuration du dépôt Adobe."
+  yum -y localinstall $CWD/yum/adobe-release-*.rpm
+  cat $CWD/yum/adobe-linux-x86_64.repo > /etc/yum.repos.d/adobe-linux-x86_64.repo
 fi
 
 exit 0
