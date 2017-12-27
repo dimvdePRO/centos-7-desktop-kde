@@ -29,12 +29,17 @@ if ! rpm -q yum-plugin-priorities 2>&1 > /dev/null ; then
   yum -y install yum-plugin-priorities
 fi
 
+echo ":: Configuration du dépôt EPEL."
 if ! rpm -q epel-release 2>&1 > /dev/null ; then
   yum -y install epel-release
+  cat $CWD/yum/epel.repo > /etc/yum.repos.d/epel.repo
+  cat $CWD/yum/epel-testing.repo > /etc/yum.repos.d/epel-testing.repo
 fi
 
-echo ":: Configuration du dépôt EPEL."
-cat $CWD/yum/epel.repo > /etc/yum.repos.d/epel.repo
-cat $CWD/yum/epel-testing.repo > /etc/yum.repos.d/epel-testing.repo
+echo ":: Configuration du dépôt Nux-Dextop."
+if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
+  yum -y localinstall $CWD/yum/nux-dextop-release-*.rpm
+  cat $CWD/yum/nux-dextop.repo > /etc/yum.repos.d/nux-dextop.repo
+fi
 
 exit 0
