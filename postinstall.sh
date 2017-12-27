@@ -70,6 +70,7 @@ fi
 if ! rpm -q epel-release 2>&1 > /dev/null ; then
   echo ":: Configuration du dépôt EPEL..."
   echo "::"
+  rpm --import http://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 1> /dev/null
   yum -y install epel-release 1> /dev/null
   cat $CWD/config/yum/epel.repo > /etc/yum.repos.d/epel.repo
   cat $CWD/config/yum/epel-testing.repo > /etc/yum.repos.d/epel-testing.repo
@@ -81,7 +82,7 @@ fi
 if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
   echo ":: Configuration du dépôt Nux-Dextop..."
   echo "::"
-  yum -y localinstall $CWD/yum/nux-dextop-release-*.rpm 1> /dev/null
+  yum -y localinstall $CWD/config/yum/nux-dextop-release-*.rpm 1> /dev/null
   cat $CWD/config/yum/nux-dextop.repo > /etc/yum.repos.d/nux-dextop.repo
   echo -e ":: [${VERT}OK${GRIS}]"
   echo "::"
@@ -108,5 +109,20 @@ if ! rpm -q elrepo-release 2>&1 > /dev/null ; then
   echo "::"
   sleep $DELAY
 fi
+
+echo ":: Synchronisation des dépôts de paquets..."
+echo "::"
+yum check-update 1> /dev/null
+echo -e ":: [${VERT}OK${GRIS}]"
+echo "::"
+sleep $DELAY
+
+echo ":: Installation des outils Linux..."
+echo "::"
+PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/outils-linux.txt)
+yum -y install $PAQUETS 1> /dev/null
+echo -e ":: [${VERT}OK${GRIS}]"
+echo "::"
+sleep $DELAY
 
 exit 0
