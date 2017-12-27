@@ -19,6 +19,10 @@ cat $CWD/bash/bashrc-users > /etc/skel/.bashrc
 echo ":: Configuration de Vim."
 cat $CWD/vim/vimrc > /etc/vimrc
 
-echo 
+echo ":: Configuration des dépôts de base."
+cat $CWD/yum/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
+
+echo ":: Configuration du dépôt CR."
+cat $CWD/yum/CentOS-CR.repo > /etc/yum.repos.d/CentOS-CR.repo
 
 exit 0
