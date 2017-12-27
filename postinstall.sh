@@ -125,4 +125,14 @@ echo -e ":: [${VERT}OK${GRIS}]"
 echo "::"
 sleep $DELAY
 
+echo ":: Suppression des paquets inutiles..."
+echo "::"
+CHOLESTEROL=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/cholesterol.txt)
+yum -y remove $CHOLESTEROL > /dev/null 2>&1
+echo -e ":: [${VERT}OK${GRIS}]"
+echo "::"
+sleep $DELAY
+
+echo
+
 exit 0

@@ -1,0 +1,57 @@
+# Paquets inutiles
+
+# Système
+abrt
+chrony
+firewall-config
+firewalld
+gnome-abrt
+PackageKit-glib
+postfix
+setroubleshoot
+system-config-date
+system-config-printer
+
+# Applications
+im-chooser
+kdeadmin
+kdenetwork-kget
+kdenetwork-krfb
+kdepim
+kdepim-runtime
+kdf
+kgpg
+kmag
+ksshaskpass
+ksysguard
+xterm
+
+# Polices TrueType exotiques
+cjkuni-uming-fonts
+jomolhari-fonts
+khmeros-base-fonts
+khmeros-fonts-common
+lklug-fonts
+lohit-assamese-fonts
+lohit-bengali-fonts
+lohit-devanagari-fonts
+lohit-gujarati-fonts
+lohit-kannada-fonts
+lohit-malayalam-fonts
+lohit-marathi-fonts
+lohit-nepali-fonts
+lohit-oriya-fonts
+lohit-punjabi-fonts
+lohit-tamil-fonts
+lohit-telugu-fonts
+madan-fonts
+nhn-nanum-fonts-common
+nhn-nanum-gothic-fonts
+paktype-naskh-basic-fonts
+sil-padauk-fonts
+smc-fonts-common
+smc-meera-fonts
+thai-scalable-fonts-common
+thai-scalable-waree-fonts
+wqy-microhei-fonts
+wqy-zenhei-fonts
