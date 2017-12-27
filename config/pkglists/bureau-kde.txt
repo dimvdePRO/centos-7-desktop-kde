@@ -1,0 +1,73 @@
+# Système
+ntfs-3g
+ntfsprogs
+unrar
+
+# KDE
+bluecurve-cursor-theme
+kdeartwork-wallpapers
+kde-wallpapers
+kffmpegthumbnailer
+f22-backgrounds-kde
+
+# Polices TrueType
+freetype-infinality
+webcore-fonts
+webcore-fonts-vista
+
+# Internet
+filezilla
+firefox
+flash-plugin
+pidgin
+pidgin-otr
+thunderbird
+thunderbird-enigmail
+transmission
+
+# Bureautique
+evince
+homebank
+libreoffice
+libreoffice-langpack-de
+libreoffice-langpack-fr
+okular
+
+# Graphisme
+digikam
+gimp
+gimp-data-extras
+gimp-help-de
+gimp-help-fr
+gimp-layer-via-copy-cut
+gimp-save-for-web
+inkscape
+inkscape-docs
+inkscape-view
+librecad
+scribus
+simple-scan
+
+# Son et vidéo
+asunder
+audacious
+audacious-plugins
+audacity-freeworld
+HandBrake-gui
+lame
+libdvdcss
+mplayer
+vlc
+winff
+# openshot -> AppImage
+
+# Accessoires
+cherrytree
+conky
+kate
+p7zip
+k3b
+# k3b-extras-freeworld
+
+# Jeux
+aisleriot

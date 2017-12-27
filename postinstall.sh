@@ -13,7 +13,7 @@ VERT="\033[01;32m"
 GRIS="\033[00m"
 
 # Pause entre les opérations
-DELAY=1
+DELAY=0
 
 echo
 echo "::"
@@ -129,6 +129,14 @@ echo ":: Suppression des paquets inutiles..."
 echo "::"
 CHOLESTEROL=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/cholesterol.txt)
 yum -y remove $CHOLESTEROL > /dev/null 2>&1
+echo -e ":: [${VERT}OK${GRIS}]"
+echo "::"
+sleep $DELAY
+
+echo ":: Installation des paquets supplémentaires..."
+echo "::"
+PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/bureau-kde.txt)
+yum -y install $PAQUETS 1> /dev/null
 echo -e ":: [${VERT}OK${GRIS}]"
 echo "::"
 sleep $DELAY
