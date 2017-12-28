@@ -37,7 +37,14 @@ echo "     ######################################" | tee -a $LOG
 echo "     ### CentOS 7 KDE Post-installation ###" | tee -a $LOG
 echo "     ######################################" | tee -a $LOG
 echo | tee -a $LOG
+
+echo -e ":: Mise à jour initiale du système... \c"
+yum update >> $LOG 2>&1
+echo -e "[${VERT}OK${GRIS}] \c"
+sleep $DELAY
+echo
 echo "::"
+
 echo -e ":: Configuration de Bash pour l'administrateur... \c"
 sleep $DELAY
 cat $CWD/config/bash/bashrc-root > /root/.bashrc 
@@ -137,7 +144,7 @@ sleep $DELAY
 echo
 echo "::"
 
-echo -e ":: Installation des outils Linux... \c"
+echo -e ":: Installation des outils système Linux... \c"
 PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/outils-linux.txt)
 yum -y install $PAQUETS >> $LOG 2>&1
 echo -e "[${VERT}OK${GRIS}] \c"
