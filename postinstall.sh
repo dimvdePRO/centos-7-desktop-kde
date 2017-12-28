@@ -46,18 +46,26 @@ echo
 echo "::"
 
 echo -e ":: Désactivation de l'IPv6... \c"
+sleep $DELAY
 cat $CWD/config/sysctl.d/disable-ipv6.conf > /etc/sysctl.d/disable-ipv6.conf
 if [ -f /etc/ssh/sshd_config ]; then
   sed -i -e 's/#AddressFamily any/AddressFamily inet/g' /etc/ssh/sshd_config
   sed -i -e 's/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/g' /etc/ssh/sshd_config
 fi
-yum update >> $LOG 2>&1
 echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
 echo
 echo "::"
 
-exit 0
+echo -e ":: Configuration de SELinux en mode permissif... \c"
+sleep $DELAY
+if [ -f /etc/selinux/config ]; then
+  sed -i -e 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
+fi
+echo -e "[${VERT}OK${GRIS}] \c"
+sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Configuration de Bash pour l'administrateur... \c"
 sleep $DELAY
