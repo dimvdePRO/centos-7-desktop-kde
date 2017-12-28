@@ -1,0 +1,5 @@
+[KDE]
+SingleClick=false
+
+[General]
+BrowserApplication[$e]=firefox.desktop
