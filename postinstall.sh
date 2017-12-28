@@ -132,6 +132,7 @@ fi
 if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets Nux-Dextop... \c"
   yum -y localinstall $CWD/config/yum/nux-dextop-release-*.rpm >> $LOG 2>&1
+  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-nux.ro >> $LOG 2>&1
   cat $CWD/config/yum/nux-dextop.repo > /etc/yum.repos.d/nux-dextop.repo
   echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
@@ -142,6 +143,7 @@ fi
 if ! rpm -q adobe-release-x86_64 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets Adobe... \c"
   yum -y localinstall $CWD/config/yum/adobe-release-*.rpm >> $LOG 2>&1
+  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux >> $LOG 2>&1
   cat $CWD/config/yum/adobe-linux-x86_64.repo > /etc/yum.repos.d/adobe-linux-x86_64.repo
   echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
