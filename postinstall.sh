@@ -39,7 +39,7 @@ echo "     ######################################" | tee -a $LOG
 echo | tee -a $LOG
 
 echo -e ":: Mise à jour initiale du système... \c"
-yum update >> $LOG 2>&1
+yum -y update >> $LOG 2>&1
 echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
 echo
