@@ -41,44 +41,50 @@ echo "::"
 echo -e ":: Configuration de Bash pour l'administrateur... \c"
 sleep $DELAY
 cat $CWD/config/bash/bashrc-root > /root/.bashrc 
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Configuration de Bash pour les utilisateurs... \c"
 sleep $DELAY
 cat $CWD/config/bash/bashrc-users > /etc/skel/.bashrc
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Configuration de Vim... \c"
 sleep $DELAY
 cat $CWD/config/vim/vimrc > /etc/vimrc
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Configuration des dépôts de paquets officiels... \c"
 sleep $DELAY
 cat $CWD/config/yum/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Configuration du dépôt de paquets CR... \c"
 sleep $DELAY
 cat $CWD/config/yum/CentOS-CR.repo > /etc/yum.repos.d/CentOS-CR.repo
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 if ! rpm -q yum-plugin-priorities 2>&1 > /dev/null ; then
   echo -e ":: Installation du plugin Yum-Priorities... \c"
   yum -y install yum-plugin-priorities >> $LOG 2>&1
-  echo -e "[${VERT}OK${GRIS}]"
-  echo "::"
+  echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
+  echo
+  echo "::"
 fi
 
 if ! rpm -q epel-release 2>&1 > /dev/null ; then
@@ -87,27 +93,30 @@ if ! rpm -q epel-release 2>&1 > /dev/null ; then
   yum -y install epel-release >> $LOG 2>&1
   cat $CWD/config/yum/epel.repo > /etc/yum.repos.d/epel.repo
   cat $CWD/config/yum/epel-testing.repo > /etc/yum.repos.d/epel-testing.repo
-  echo -e "[${VERT}OK${GRIS}]"
-  echo "::"
+  echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
+  echo
+  echo "::"
 fi
 
 if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets Nux-Dextop... \c"
   yum -y localinstall $CWD/config/yum/nux-dextop-release-*.rpm >> $LOG 2>&1
   cat $CWD/config/yum/nux-dextop.repo > /etc/yum.repos.d/nux-dextop.repo
-  echo -e "[${VERT}OK${GRIS}]"
-  echo "::"
+  echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
+  echo
+  echo "::"
 fi
 
 if ! rpm -q adobe-release-x86_64 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets Adobe... \c"
   yum -y localinstall $CWD/config/yum/adobe-release-*.rpm >> $LOG 2>&1
   cat $CWD/config/yum/adobe-linux-x86_64.repo > /etc/yum.repos.d/adobe-linux-x86_64.repo
-  echo -e "[${VERT}OK${GRIS}]"
-  echo "::"
+  echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
+  echo
+  echo "::"
 fi
 
 if ! rpm -q elrepo-release 2>&1 > /dev/null ; then
@@ -115,37 +124,42 @@ if ! rpm -q elrepo-release 2>&1 > /dev/null ; then
   rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org >> $LOG 2>&1
   yum -y localinstall $CWD/config/yum/elrepo-release-*.rpm >> $LOG 2>&1
   cat $CWD/config/yum/elrepo.repo > /etc/yum.repos.d/elrepo.repo
-  echo -e "[${VERT}OK${GRIS}]"
-  echo "::"
+  echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
+  echo
+  echo "::"
 fi
 
 echo -e ":: Synchronisation des dépôts de paquets... \c"
 yum check-update >> $LOG 2>&1
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Installation des outils Linux... \c"
 PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/outils-linux.txt)
 yum -y install $PAQUETS >> $LOG 2>&1
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Suppression des paquets inutiles... \c"
 CHOLESTEROL=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/cholesterol.txt)
 yum -y remove $CHOLESTEROL >> $LOG 2>&1
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo -e ":: Installation des applications supplémentaires... \c"
 PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/bureau-kde.txt)
 yum -y install $PAQUETS >> $LOG 2>&1
-echo -e "[${VERT}OK${GRIS}]"
-echo "::"
+echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
+echo
+echo "::"
 
 echo
 
