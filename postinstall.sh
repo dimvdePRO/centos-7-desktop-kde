@@ -45,6 +45,20 @@ sleep $DELAY
 echo
 echo "::"
 
+echo -e ":: Désactivation de l'IPv6... \c"
+cat $CWD/config/sysctl.d/disable-ipv6.conf > /etc/sysctl.d/disable-ipv6.conf
+if [ -f /etc/ssh/sshd_config ]; then
+  sed -i -e 's/#AddressFamily any/AddressFamily inet/g' /etc/ssh/sshd_config
+  sed -i -e 's/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/g' /etc/ssh/sshd_config
+fi
+yum update >> $LOG 2>&1
+echo -e "[${VERT}OK${GRIS}] \c"
+sleep $DELAY
+echo
+echo "::"
+
+exit 0
+
 echo -e ":: Configuration de Bash pour l'administrateur... \c"
 sleep $DELAY
 cat $CWD/config/bash/bashrc-root > /root/.bashrc 
@@ -72,6 +86,7 @@ echo "::"
 echo -e ":: Configuration des dépôts de paquets officiels... \c"
 sleep $DELAY
 cat $CWD/config/yum/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
+sed -i -e 's/installonly_limit=5/installonly_limit=2/g' /etc/yum.conf
 echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
 echo
