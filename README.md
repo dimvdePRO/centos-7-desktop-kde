@@ -97,7 +97,7 @@ Après un deuxième redémarrage, il ne reste plus qu'à supprimer l'utilisateur
 `install` provisoire.
 
 <pre>
-# userdel -r install
+# <strong>userdel -r install</strong>
 </pre>
 
 -- (c) Nicolas Kovacs, 2018
