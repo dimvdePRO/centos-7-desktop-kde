@@ -61,8 +61,8 @@ sleep $DELAY
 echo
 echo "::"
 
-# Passer SELinux en mode permissif 
-echo -e ":: Configuration de SELinux en mode permissif... \c"
+# Passer SELinux en mode permissif de manière temporaire
+echo -e ":: Basculer SELinux en mode permissif de manière temporaire... \c"
 sleep $DELAY
 if [ -f /etc/selinux/config ]; then
   sed -i -e 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config

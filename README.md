@@ -59,7 +59,7 @@ Le script se charge automatiquement des opérations suivantes.
 
   * Désactiver l'IPv6.
 
-  * Basculer SELinux en mode permissif.
+  * Basculer SELinux en mode permissif de manière temporaire.
 
   * Personnaliser le shell Bash pour `root` et les utilisateurs.
 
@@ -101,3 +101,4 @@ Après un deuxième redémarrage, il ne reste plus qu'à supprimer l'utilisateur
 </pre>
 
 -- (c) Nicolas Kovacs, 2018
+
