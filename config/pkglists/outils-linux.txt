@@ -18,6 +18,8 @@ mlocate
 mtools
 net-tools
 nmap
+ntfs-3g
+ntfsprogs
 ntp
 pciutils
 pinfo
@@ -30,6 +32,7 @@ syslinux
 time
 traceroute
 tree
+unrar
 unzip
 usbutils
 vim

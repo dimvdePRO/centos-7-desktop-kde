@@ -19,15 +19,6 @@ set shiftwidth=2
 set expandtab
 set modeline modelines=2
 
-"[Ctrl-N] inserts unbreakable space '&nbsp;'
-:map <C-N> s&nbsp;<ESC>
-"
-"[Ctrl-I] inserts <em></em> around selected word
-:vmap <C-I> "zdi<em><C-R>z</em><ESC>
-
-"[Ctrl-B] inserts <strong></strong> around selected word
-:vmap <C-B> "zdi<strong><C-R>z</strong><ESC>
-
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
   augroup redhat

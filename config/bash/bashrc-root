@@ -15,10 +15,10 @@ alias ...='cd ../..'
 alias vi='vim'
 
 # Invite de commandes pour root
-WHITE='\[\033[1;37m\]'
-RED='\[\033[0;33m\]'
-NC='\[\033[0m\]'
-PS1="$RED[$WHITE\u$NC@$WHITE\h$NC:$WHITE\W$RED] #$NC "
+ROUGE='\[\033[0;33m\]'
+BLANC='\[\033[1;37m\]'
+GRIS='\[\033[0m\]'
+PS1="$ROUGE[$BLANC\u$GRIS@$BLANC\h$GRIS:$BLANC\W$ROUGE] #$GRIS "
 
 # Vim est notre éditeur préféré
 EDITOR=vim

@@ -14,9 +14,10 @@ if [ $EUID -ne 0 ] ; then
   exit 1
 fi
 
+# Répertoire courant
 CWD=$(pwd)
 
-# Quitter en cas d'erreur
+# Interrompre en cas d'erreur
 set -e
 
 # Couleurs
@@ -32,12 +33,14 @@ DELAY=1
 # Nettoyer le fichier journal
 echo > $LOG
 
+# Bannière
 echo
 echo "     ######################################" | tee -a $LOG
 echo "     ### CentOS 7 KDE Post-installation ###" | tee -a $LOG
 echo "     ######################################" | tee -a $LOG
 echo | tee -a $LOG
 
+# Mise à jour initiale
 echo -e ":: Mise à jour initiale du système... \c"
 yum -y update >> $LOG 2>&1
 echo -e "[${VERT}OK${GRIS}] \c"
@@ -45,6 +48,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Pour l'instant on n'utilise que l'IPv4
 echo -e ":: Désactivation de l'IPv6... \c"
 sleep $DELAY
 cat $CWD/config/sysctl.d/disable-ipv6.conf > /etc/sysctl.d/disable-ipv6.conf
@@ -57,17 +61,20 @@ sleep $DELAY
 echo
 echo "::"
 
+# Passer SELinux en mode permissif 
 echo -e ":: Configuration de SELinux en mode permissif... \c"
 sleep $DELAY
 if [ -f /etc/selinux/config ]; then
   sed -i -e 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
+  setenforce 0
 fi
 echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
 echo
 echo "::"
 
-echo -e ":: Configuration de Bash pour l'administrateur... \c"
+# Personnalisation du shell Bash pour root
+echo -e ":: Configuration du shell Bash pour l'administrateur... \c"
 sleep $DELAY
 cat $CWD/config/bash/bashrc-root > /root/.bashrc 
 echo -e "[${VERT}OK${GRIS}] \c"
@@ -75,7 +82,8 @@ sleep $DELAY
 echo
 echo "::"
 
-echo -e ":: Configuration de Bash pour les utilisateurs... \c"
+# Personnalisation du shell Bash pour les utilisateurs
+echo -e ":: Configuration du shell Bash pour les utilisateurs... \c"
 sleep $DELAY
 cat $CWD/config/bash/bashrc-users > /etc/skel/.bashrc
 echo -e "[${VERT}OK${GRIS}] \c"
@@ -83,6 +91,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Quelques options pratiques pour Vim
 echo -e ":: Configuration de Vim... \c"
 sleep $DELAY
 cat $CWD/config/vim/vimrc > /etc/vimrc
@@ -91,6 +100,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Activer les dépôts [base], [updates] et [extras] avec une priorité de 1
 echo -e ":: Configuration des dépôts de paquets officiels... \c"
 sleep $DELAY
 cat $CWD/config/yum/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
@@ -100,6 +110,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Activer le dépôt [cr] avec une priorité de 1
 echo -e ":: Configuration du dépôt de paquets CR... \c"
 sleep $DELAY
 cat $CWD/config/yum/CentOS-CR.repo > /etc/yum.repos.d/CentOS-CR.repo
@@ -108,6 +119,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Installer le plugin Yum-Priorities
 if ! rpm -q yum-plugin-priorities 2>&1 > /dev/null ; then
   echo -e ":: Installation du plugin Yum-Priorities... \c"
   yum -y install yum-plugin-priorities >> $LOG 2>&1
@@ -117,6 +129,7 @@ if ! rpm -q yum-plugin-priorities 2>&1 > /dev/null ; then
   echo "::"
 fi
 
+# Activer le dépôt [epel] avec une priorité de 10
 if ! rpm -q epel-release 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets EPEL... \c"
   rpm --import http://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 >> $LOG 2>&1
@@ -129,6 +142,7 @@ if ! rpm -q epel-release 2>&1 > /dev/null ; then
   echo "::"
 fi
 
+# Activer le dépôt [nux-dextop] avec une priorité de 10
 if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets Nux-Dextop... \c"
   yum -y localinstall $CWD/config/yum/nux-dextop-release-*.rpm >> $LOG 2>&1
@@ -140,6 +154,7 @@ if ! rpm -q nux-dextop-release 2>&1 > /dev/null ; then
   echo "::"
 fi
 
+# Activer le dépôt [adobe-linux-x86_64] avec une priorité de 10
 if ! rpm -q adobe-release-x86_64 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets Adobe... \c"
   yum -y localinstall $CWD/config/yum/adobe-release-*.rpm >> $LOG 2>&1
@@ -151,6 +166,7 @@ if ! rpm -q adobe-release-x86_64 2>&1 > /dev/null ; then
   echo "::"
 fi
 
+# Configurer les dépôts [elrepo], [elrepo-kernel], etc. sans les activer
 if ! rpm -q elrepo-release 2>&1 > /dev/null ; then
   echo -e ":: Configuration du dépôt de paquets ELRepo... \c"
   rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org >> $LOG 2>&1
@@ -162,6 +178,7 @@ if ! rpm -q elrepo-release 2>&1 > /dev/null ; then
   echo "::"
 fi
 
+# Synchroniser les dépôts de paquets
 echo -e ":: Synchronisation des dépôts de paquets... \c"
 yum check-update >> $LOG 2>&1
 echo -e "[${VERT}OK${GRIS}] \c"
@@ -169,6 +186,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Installer les outils Linux listés dans config/pkglists/outils-linux.txt
 echo -e ":: Installation des outils système Linux... \c"
 PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/outils-linux.txt)
 yum -y install $PAQUETS >> $LOG 2>&1
@@ -177,6 +195,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Supprimer les paquets inutiles listés dans config/pkglists/cholesterol.txt
 echo -e ":: Suppression des paquets inutiles... \c"
 CHOLESTEROL=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/cholesterol.txt)
 yum -y remove $CHOLESTEROL >> $LOG 2>&1
@@ -185,6 +204,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Installer les paquets listés dans config/pkglists/bureau-kde.txt
 echo -e ":: Installation des applications supplémentaires... \c"
 PAQUETS=$(egrep -v '(^\#)|(^\s+$)' $CWD/config/pkglists/bureau-kde.txt)
 yum -y install $PAQUETS >> $LOG 2>&1
@@ -193,6 +213,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Personnaliser les entrées du menu KDE
 echo -e ":: Personnalisation des entrées de menu KDE... \c"
 sleep $DELAY
 $CWD/menus.sh >> $LOG 2>&1
@@ -201,6 +222,7 @@ sleep $DELAY
 echo
 echo "::"
 
+# Installer le profil par défaut des utilisateurs
 echo -e ":: Installation du profil par défaut des utilisateurs... \c"
 sleep $DELAY
 $CWD/profil.sh >> $LOG 2>&1
