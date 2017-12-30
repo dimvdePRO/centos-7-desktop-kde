@@ -61,18 +61,6 @@ sleep $DELAY
 echo
 echo "::"
 
-# Passer SELinux en mode permissif de manière temporaire
-echo -e ":: Basculer SELinux en mode permissif de manière temporaire... \c"
-sleep $DELAY
-if [ -f /etc/selinux/config ]; then
-  sed -i -e 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
-  setenforce 0
-fi
-echo -e "[${VERT}OK${GRIS}] \c"
-sleep $DELAY
-echo
-echo "::"
-
 # Personnalisation du shell Bash pour root
 echo -e ":: Configuration du shell Bash pour l'administrateur... \c"
 sleep $DELAY

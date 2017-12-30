@@ -59,8 +59,6 @@ Le script se charge automatiquement des opérations suivantes.
 
   * Désactiver l'IPv6.
 
-  * Basculer SELinux en mode permissif de manière temporaire.
-
   * Personnaliser le shell Bash pour `root` et les utilisateurs.
 
   * Personnaliser la configuration de Vim.
