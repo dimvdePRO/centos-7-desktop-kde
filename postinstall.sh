@@ -34,11 +34,20 @@ DELAY=1
 echo > $LOG
 
 # Bannière
+sleep $DELAY
 echo
 echo "     ######################################" | tee -a $LOG
 echo "     ### CentOS 7 KDE Post-installation ###" | tee -a $LOG
 echo "     ######################################" | tee -a $LOG
 echo | tee -a $LOG
+sleep $DELAY
+echo "     Pour suivre l'avancement des opérations,"
+echo "     ouvrez une deuxième console et invoquez "
+echo "     la commande suivante :"
+echo
+echo "       # tail -f /tmp/postinstall.log"
+echo
+sleep $DELAY
 
 # Mise à jour initiale
 echo -e ":: Mise à jour initiale du système... \c"
