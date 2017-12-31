@@ -10,15 +10,17 @@ CWD=$(pwd)
 CONFIGDIR="$CWD/config/kde"
 LAYOUTDIR="/usr/share/kde4/apps"
 CUSTOMDIR="/etc/skel/.kde/share"
+MIMEDIR="/etc/skel/.local/share/applications"
 
 echo
 
 echo ":: Suppression du profil existant."
-rm -rf $CUSTOMDIR
+rm -rf $CUSTOMDIR $MIMEDIR
 
 echo ":: Création de l'arborescence du nouveau profil."
 mkdir -p $CUSTOMDIR/apps/konsole
 mkdir -p $CUSTOMDIR/config
+mkdir -p $MIMEDIR
 
 echo ":: Configuration du bureau par défaut."
 cat $CONFIGDIR/00-defaultLayout.js > $LAYOUTDIR/plasma-desktop/init/00-defaultLayout.js
@@ -45,6 +47,9 @@ echo ":: Configuration du terminal Konsole."
 cat $CONFIGDIR/konsolerc > $CUSTOMDIR/config/konsolerc
 cat $CONFIGDIR/MLED.profile > $CUSTOMDIR/apps/konsole/MLED.profile
 cat $CONFIGDIR/Solarized.colorscheme > $CUSTOMDIR/apps/konsole/Solarized.colorscheme
+
+echo ":: Association des types de fichiers aux applications."
+cat $CONFIGDIR/mimeapps.list > $MIMEDIR/mimeapps.list
 
 echo
 
