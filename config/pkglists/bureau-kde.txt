@@ -47,6 +47,7 @@ simple-scan
 asunder
 audacious
 audacious-plugins
+audacious-plugins-freeworld
 audacity-freeworld
 HandBrake-gui
 lame
