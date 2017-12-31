@@ -50,9 +50,12 @@ audacious-plugins
 audacious-plugins-freeworld
 audacity-freeworld
 HandBrake-gui
+ladspa
 lame
 libdvdcss
+mlt-ffmpeg
 mplayer
+openshot
 vlc
 winff
 
