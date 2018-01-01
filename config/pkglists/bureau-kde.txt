@@ -49,6 +49,11 @@ audacious
 audacious-plugins
 audacious-plugins-freeworld
 audacity-freeworld
+gstreamer-plugins-bad
+gstreamer-plugins-bad-nonfree
+gstreamer-plugins-ugly
+gstreamer1-plugins-bad-freeworld
+gstreamer1-plugins-ugly
 HandBrake-gui
 ladspa
 lame
