@@ -11,6 +11,7 @@ CONFIGDIR="$CWD/config/kde"
 LAYOUTDIR="/usr/share/kde4/apps"
 CUSTOMDIR="/etc/skel/.kde/share"
 MIMEDIR="/etc/skel/.local/share/applications"
+WINFFDIR="/etc/skep/.winff"
 
 echo
 
@@ -21,6 +22,7 @@ echo ":: Création de l'arborescence du nouveau profil."
 mkdir -p $CUSTOMDIR/apps/konsole
 mkdir -p $CUSTOMDIR/config
 mkdir -p $MIMEDIR
+mkdir -p $WINFFDIR
 
 echo ":: Configuration du bureau par défaut."
 cat $CONFIGDIR/00-defaultLayout.js > $LAYOUTDIR/plasma-desktop/init/00-defaultLayout.js
@@ -50,6 +52,9 @@ cat $CONFIGDIR/Solarized.colorscheme > $CUSTOMDIR/apps/konsole/Solarized.colorsc
 
 echo ":: Association des types de fichiers aux applications."
 cat $CONFIGDIR/mimeapps.list > $MIMEDIR/mimeapps.list
+
+echo ":: Configuration de WinFF."
+cat $CONFIGDIR/cfg.xml > $WINFFDIR/cfg.xml
 
 echo
 
