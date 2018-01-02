@@ -9,7 +9,7 @@ Prérequis
 ---------
 
 Le point de départ, c'est une installation par défaut de CentOS 7. Dans l'écran
-de sélection des paquets, on optera pour le groupe de paques *KDE Plasma
+de sélection des paquets, on optera pour le groupe de paquets *KDE Plasma
 Workspaces*, mais sans cocher les options supplémentaires comme *Applications
 KDE*, *Applications Internet*, etc.
 
