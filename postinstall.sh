@@ -226,6 +226,21 @@ echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
 echo
 
+# Installer Gtkcdlabel
+if [ ! -f /usr/bin/gtkcdlabel.py ]; then
+  echo "::"
+  echo -e ":: Installation de l'application Gtkcdlabel... \c"
+  cd /tmp
+  # Sourceforge est inutilisable
+  wget -c https://www.microlinux.fr/download/gtkcdlabel-1.15.tar.bz2 >> $LOG 2>&1
+  tar xvjf gtkcdlabel-1.15.tar.bz2 -C / >> $LOG 2>&1
+  rm -f gtkcdlabel-1.15.tar.bz2
+  cd - >> $LOG 2>&1
+  echo -e "[${VERT}OK${GRIS}] \c"
+  sleep $DELAY
+  echo
+fi
+
 # Installer le profil par défaut des utilisateurs
 echo "::"
 echo -e ":: Installation du profil par défaut des utilisateurs... \c"
@@ -246,6 +261,7 @@ if [ ! -d /usr/share/fonts/apple-fonts ]; then
   tar xvf FontApple.tar.xz >> $LOG 2>&1
   mv Lucida*.ttf Monaco.ttf /usr/share/fonts/apple-fonts/
   fc-cache -f -v >> $LOG 2>&1
+  rm -f FontApple.tar.xz
   cd - >> $LOG 2>&1
   echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
@@ -262,6 +278,7 @@ if [ ! -d /usr/share/fonts/eurostile ]; then
   unzip Eurostile.zip -d /usr/share/fonts/ >> $LOG 2>&1
   mv /usr/share/fonts/Eurostile /usr/share/fonts/eurostile
   fc-cache -f -v >> $LOG 2>&1
+  rm -f Eurostile.zip
   cd - >> $LOG 2>&1
   echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
@@ -277,6 +294,7 @@ if [ ! -f /usr/share/backgrounds/.microlinux ]; then
   tar xvzf microlinux-wallpapers.tar.gz >> $LOG 2>&1 
   cp -f microlinux-wallpapers/* /usr/share/backgrounds/ >> $LOG 2>&1
   touch /usr/share/backgrounds/.microlinux >> $LOG 2>&1
+  rm -f microlinux-wallpapers.tar.gz
   cd - >> $LOG 2>&1
   echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY

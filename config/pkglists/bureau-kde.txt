@@ -29,6 +29,7 @@ libreoffice-langpack-fr
 okular
 
 # Graphisme
+cdlabelgen
 digikam
 gimp
 gimp-data-extras
