@@ -217,6 +217,15 @@ echo -e "[${VERT}OK${GRIS}] \c"
 sleep $DELAY
 echo
 
+# Autoriser les polices Type-1 pour Ghostscript
+echo "::"
+echo -e ":: Autoriser les polices Type-1 pour Ghostscript... \c"
+sleep $DELAY
+cat $CWD/config/infinality/infinality.conf > /etc/fonts/infinality/infinality.conf
+echo -e "[${VERT}OK${GRIS}] \c"
+sleep $DELAY
+echo
+
 # Installer le profil par défaut des utilisateurs
 echo "::"
 echo -e ":: Installation du profil par défaut des utilisateurs... \c"
