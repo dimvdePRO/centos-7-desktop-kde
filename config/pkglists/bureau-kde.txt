@@ -73,6 +73,7 @@ conky
 kate
 p7zip
 k3b
+k3b-extras-freeworld
 
 # Jeux
 aisleriot
