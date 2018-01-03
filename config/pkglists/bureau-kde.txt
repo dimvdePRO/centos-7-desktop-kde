@@ -1,3 +1,6 @@
+# Système
+gcc
+
 # KDE
 bluecurve-cursor-theme
 kdeartwork-wallpapers
