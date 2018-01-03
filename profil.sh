@@ -11,7 +11,7 @@ CONFIGDIR="$CWD/config/kde"
 LAYOUTDIR="/usr/share/kde4/apps"
 CUSTOMDIR="/etc/skel/.kde/share"
 MIMEDIR="/etc/skel/.local/share/applications"
-WINFFDIR="/etc/skep/.winff"
+WINFFDIR="/etc/skel/.winff"
 
 echo
 
@@ -55,6 +55,9 @@ cat $CONFIGDIR/mimeapps.list > $MIMEDIR/mimeapps.list
 
 echo ":: Configuration de WinFF."
 cat $CONFIGDIR/cfg.xml > $WINFFDIR/cfg.xml
+
+echo ":: Configuration de Gtkcdlabel."
+cat $CONFIGDIR/gtkcdlabelrc > /etc/skel/.gtkcdlabelrc
 
 echo
 
