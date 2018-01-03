@@ -32,7 +32,6 @@ libreoffice-langpack-fr
 okular
 
 # Graphisme
-a2ps
 cdlabelgen
 digikam
 gimp
