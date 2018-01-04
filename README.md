@@ -57,6 +57,8 @@ Le script se charge automatiquement des opérations suivantes.
 
   * Effectuer la mise à jour initiale du système.
 
+  * Basculer SELinux en mode permissif.
+
   * Désactiver l'IPv6.
 
   * Personnaliser le shell Bash pour `root` et les utilisateurs.
@@ -82,6 +84,10 @@ Le script se charge automatiquement des opérations suivantes.
   * Installer une panoplie de polices TrueType avec le rendu Infinality.
 
   * Installer une collection de fonds d'écran.
+
+**Remarque importante** : SELinux est basculé en mode permissif de manière
+temporaire afin de permettre aux admins de résoudre manuellement les blocages
+avant de rebasculer en mode renforcé. 
 
 Une fois que le script est arrivé à terme, on peut créer un nouvel utilisateur.
 
