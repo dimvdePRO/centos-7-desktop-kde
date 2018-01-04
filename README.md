@@ -86,8 +86,8 @@ Le script se charge automatiquement des opérations suivantes.
   * Installer une collection de fonds d'écran.
 
 **Remarque importante** : SELinux est basculé en mode permissif de manière
-temporaire afin de permettre aux admins de résoudre manuellement les blocages
-avant de rebasculer en mode renforcé. 
+temporaire afin de permettre aux admins de résoudre manuellement les éventuels
+blocages avant de rebasculer en mode renforcé. 
 
 Une fois que le script est arrivé à terme, on peut créer un nouvel utilisateur.
 
@@ -97,7 +97,7 @@ Une fois que le script est arrivé à terme, on peut créer un nouvel utilisateu
 # <strong>usermod -a -G wheel kikinovak</strong>
 </pre>
 
-Après un deuxième redémarrage, il ne reste plus qu'à supprimer l'utilisateur
+Une fois qu'on s'est reconnecté, il ne reste plus qu'à supprimer l'utilisateur
 `install` provisoire.
 
 <pre>
