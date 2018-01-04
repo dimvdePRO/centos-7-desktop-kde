@@ -341,6 +341,8 @@ echo "     Redémarrez le PC et supprimez l'utilisateur initial :"
 echo
 echo "       # userdel -r install"
 echo
+echo "     Notez que SELinux est actuellement en mode permissif."
+echo
 sleep $DELAY
 
 echo
