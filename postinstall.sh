@@ -245,16 +245,17 @@ fi
 if [ ! -f /usr/local/bin/normalize ]; then
   echo "::"
   echo -e ":: Installation de l'outil de normalisation audio... \c"
-  cd /usr/src
+  pushd /usr/src >> $LOG 2>&1
   wget -c https://www.microlinux.fr/download/normalize-0.7.7.tar.gz >> $LOG 2>&1
   tar xvzf normalize-0.7.7.tar.gz >> $LOG 2>&1
   find normalize-0.7.7 -type d -exec chmod 0755 {} \;
-  cd normalize-0.7.7
+  pushd normalize-0.7.7 >> $LOG 2>&1
   ./configure >> $LOG 2>&1
   make >> $LOG 2>&1
   make install >> $LOG 2>&1
-  rm -f ../normalize-0.7.7.tar.gz
-  cd - >> $LOG 2>&1
+  popd >> $LOG 2>&1
+  rm -f normalize-0.7.7.tar.gz
+  popd >> $LOG 2>&1
   echo -e "[${VERT}OK${GRIS}] \c"
   sleep $DELAY
   echo
